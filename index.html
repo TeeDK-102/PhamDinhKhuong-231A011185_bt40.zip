@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang Chủ - Phạm Đình Khương (231A011185)</title>
+  <style>
+    :root {
+      --primary-color: #7c3aed;
+      --secondary-color: #a855f7;
+      --accent-color: #f43f5e;
+      --bg-dark: #0f071e;
+      --card-bg: rgba(26, 15, 46, 0.85);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(244, 63, 94, 0.2) 0%, transparent 40%);
+      color: var(--text-main);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 15px;
+      position: relative;
+    }
+
+    /* Nhãn "Trang chủ" cố định góc trên bên phải (Làm mốc - Không nhấn được) */
+    .home-marker-badge {
+      position: fixed;
+      top: 25px;
+      right: 25px;
+      background: rgba(124, 58, 237, 0.3);
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: 1px solid rgba(168, 85, 247, 0.5);
+      backdrop-filter: blur(10px);
+      z-index: 999999;
+      cursor: default;
+      user-select: none;
+      pointer-events: none; /* Khóa không cho bấm */
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .profile-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-radius: 20px;
+      padding: 35px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    }
+
+    .avatar-wrapper {
+      width: 130px; height: 130px;
+      border-radius: 50%; padding: 4px;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      margin-bottom: 20px;
+      box-shadow: 0 0 25px rgba(124, 58, 237, 0.5);
+    }
+
+    .avatar { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid var(--bg-dark); }
+    .greeting { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .name { font-size: 2.2rem; font-weight: 800; background: linear-gradient(to right, #c084fc, #f43f5e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+    .student-id { font-size: 1.05rem; color: var(--text-muted); background: rgba(255, 255, 255, 0.05); padding: 6px 18px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); letter-spacing: 1px; }
+
+    .section-title { font-size: 1.3rem; font-weight: 700; color: #e2e8f0; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+    .section-title::before { content: ''; display: inline-block; width: 6px; height: 22px; background: var(--accent-color); border-radius: 3px; }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .project-card {
+      background: var(--card-bg); backdrop-filter: blur(16px);
+      border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 16px; padding: 22px;
+      text-decoration: none; color: inherit; box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .project-card:hover { transform: translateY(-5px); border-color: var(--secondary-color); box-shadow: 0 15px 30px rgba(124, 58, 237, 0.4); }
+    .project-card h3 { font-size: 1.2rem; color: #f3f4f6; margin-bottom: 8px; }
+    .project-card p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 18px; line-height: 1.4; }
+    .btn-link { align-self: flex-start; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 7px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <!-- CHỮ TRANG CHỦ MỐC - KHÔNG BẤM ĐƯỢC -->
+  <div class="home-marker-badge">Trang chủ</div>
+
+  <div class="container">
+    <div class="profile-card">
+      <div class="avatar-wrapper">
+        <img class="avatar" src="https://scontent.fsgn5-15.fna.fbcdn.net/v/t39.30808-1/583923053_1187032030036283_6643598896699324605_n.jpg?stp=dst-jpg_tt6&cstp=mx1004x996&ctp=s200x200&_nc_cat=102&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeFiUikvP1fdr5PggpoO1hPYRrkc0-TxxBNGuRzT5PHEE7eh3LUguVkGV7I85qBSnXRNsjCUEjH11-tD_x7xtwEp&_nc_ohc=qv8ASe8oRSIQ7kNvwGWUF0R&_nc_oc=AdqbIiY5kWuJDAkvkRpwYIfBV4Bw6Y6uGlqj3gtPFLmOr0NpfgPdA3p3ocFahpEKcqOoQfVrfvehy_xci2mqLxOM&_nc_zt=24&_nc_ht=scontent.fsgn5-15.fna&_nc_gid=Opz_MkJ53be1vtvWdAggNA&_nc_ss=7b2a8&oh=00_AQMD40A6mpc-QT7XYjrLB_BsaVLJAmYwLRCgdE1C1FF3jg&oe=6ADE0534" alt="Avatar Phạm Đình Khương">
+      </div>
+      <div class="greeting">Xin Chào Mọi Người</div>
+      <div class="name">Phạm Đình Khương</div>
+      <div class="student-id">Mã sinh viên: 231A011185</div>
+    </div>
+
+    <div>
+      <div class="section-title">Danh Sách Bài Tập & Trò Chơi</div>
+      <div class="projects-grid">
+        <a href="https://teedk-102.github.io/b-i-38/" class="project-card">
+          <div>
+            <h3>Bài Tập 38</h3>
+            <p>Trang kết quả bài kiểm tra lập trình web giữa kỳ.</p>
+          </div>
+          <span class="btn-link">Xem chi tiết &rarr;</span>
+        </a>
+
+        <a href="https://teedk-102.github.io/minigame/" class="project-card">
+          <div>
+            <h3>Minigame Táo</h3>
+            <p>Trò chơi tương tác bắt táo thú vị.</p>
+          </div>
+          <span class="btn-link">Chơi ngay &rarr;</span>
+        
+        </a>
+
+        <a href="https://teedk-102.github.io/-n-long/" class="project-card">
+          <div>
+            <h3>Đèn Kéo Quân 3D</h3>
+            <p>Mô hình đèn kéo quân Trung Thu xoay 3D tương tác.</p>
+          </div>
+          <span class="btn-link">Khám phá &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
